@@ -20,8 +20,8 @@ export const Navbar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                         <a href="#home" className="text-gray-400 hove:text-white transition-colors">
                             Home
                         </a>
-                        <a href="#projects" className="text-gray-400 hove:text-white transition-colors">
-                            Projects
+                        <a href="#certificates" className="text-gray-400 hove:text-white transition-colors">
+                            Qualifikationen
                         </a>
                         <a href="#about" className="text-gray-400 hove:text-white transition-colors">
                             About
