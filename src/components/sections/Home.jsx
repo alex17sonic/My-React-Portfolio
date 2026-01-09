@@ -12,7 +12,7 @@ export const Home = () => {
                         Ich bin ein engagierter und lösungsorientierter IT-Support-Spezialist mit einem soliden technischen Hintergrund im Bereich Informationstechnologie und Systemtechnik. Ich verfüge über einen anerkannten Bachelorabschluss in Informatik (System- und Computertechnik) sowie über praktische Erfahrung im Umgang mit IT-Systemen, Software, Betriebssystemen und Anwenderproblemen im täglichen Betrieb.
                     </p>
                     <div className='flex justify-center space-x-4'>
-                        <a href='#projects' className='bg-sky-800 text-shadow-indigo-50 py-3 px-6 rounded font-medium transition relative overflow-x-hidden
+                        <a href='#about' className='bg-sky-800 text-shadow-indigo-50 py-3 px-6 rounded font-medium transition relative overflow-x-hidden
                         hover:-translate-y-0.5   hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]'>
                             Mehr Über Mich
                         </a>
