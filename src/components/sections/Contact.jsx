@@ -4,7 +4,7 @@ export const Contact = () => {
     return (
         <section id="contact" className="min-h-screen flex items-center justify-center py-20">
             <ReavealOnScroll>
-                <div className="px-4 w-150">
+                <div className="px-4 w-full max-w-md">
                     <h2 className="
                         text-3xl font-bold mb-8 
                         bg-gradient-to-r from-sky-900 to-cyan-600 
