@@ -1,99 +1,77 @@
-import { useState } from "react"
-import { ReavealOnScroll } from "../ReavealOnScroll"
+import { ReavealOnScroll } from '../ReavealOnScroll';
+import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
-    const [submitted, setSubmitted] = useState(false)
+    const form = useRef();
+    const [statusMessage, setStatusMessage] = useState('');
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm(
+            import.meta.env.VITE_EMAILJS_SERVICE_ID,
+            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+            form.current,
+            import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        ).then(
+            () => {
+                setStatusMessage('✅ Your message has been sent!');
+                e.target.reset();
+            },
+            () => {
+                setStatusMessage('❌ Oops! Something went wrong.');
+            }
+        );
+    };
 
     return (
-        <section
-            id="contact"
-            className="min-h-screen flex items-center justify-center py-20"
-        >
+        <section id="contact" className="min-h-screen flex items-center justify-center py-20 bg-gray-900">
             <ReavealOnScroll>
-                <div className="px-4 w-full max-w-md">
-                    <h2
-                        className="
-              text-2xl sm:text-3xl font-bold mb-8
-              bg-gradient-to-r from-sky-900 to-cyan-600
-              bg-clip-text text-transparent text-center
-            "
-                    >
+                <div className="px-6 w-full max-w-md bg-gray-800/80 backdrop-blur-md rounded-xl shadow-lg p-8">
+                    <h2 className="
+                        text-4xl font-extrabold mb-8 
+                        bg-gradient-to-r from-sky-500 to-cyan-400
+                        bg-clip-text text-transparent text-center
+                    ">
                         Get in Touch
                     </h2>
-
-                    <form
-                        name="contact"
-                        method="POST"
-                        data-netlify="true"
-                        netlify-honeypot="bot-field"
-                        action="#"
-                        onSubmit={() => setSubmitted(true)}
-                    >
-                        {/* Netlify hidden fields */}
-                        <input type="hidden" name="form-name" value="contact" />
-                        <input type="hidden" name="bot-field" />
-
-                        <div className="relative">
-                            <input
-                                type="text"
-                                name="name"
-                                required
-                                placeholder="Your Name..."
-                                className="
-                  w-full bg-white/5 border border-white/10 rounded
-                  px-4 py-3 text-white transition
-                  focus:outline-none focus:border-blue-500 focus:bg-blue-500/5
-                "
-                            />
-                        </div>
-
-                        <div className="relative">
-                            <input
-                                type="email"
-                                name="email"
-                                required
-                                placeholder="youremail@gmail.com..."
-                                className="
-                  w-full bg-white/5 border border-white/10 rounded
-                  px-4 py-3 text-white transition
-                  focus:outline-none focus:border-blue-500 focus:bg-blue-500/5
-                "
-                            />
-                        </div>
-
-                        <div className="relative">
-                            <textarea
-                                name="message"
-                                required
-                                rows={4}
-                                placeholder="Your message..."
-                                className="
-                  w-full resize-none bg-white/5 border border-white/10 rounded
-                  px-4 py-3 text-white transition
-                  focus:outline-none focus:border-blue-500 focus:bg-blue-500/5
-                "
-                            />
-                        </div>
-
+                    <form ref={form} onSubmit={sendEmail} className="space-y-6">
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your Name..."
+                            required
+                            className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="youremail@xmail.com..."
+                            required
+                            className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"
+                        />
+                        <textarea
+                            name="message"
+                            placeholder="Your message..."
+                            rows={5}
+                            required
+                            className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"
+                        />
                         <button
                             type="submit"
-                            className="
-                w-full bg-blue-500 text-white py-3 px-6 rounded font-medium
-                transition hover:-translate-y-0.5
-                hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]
-              "
+                            className="w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-sky-500 to-cyan-400 hover:from-cyan-400 hover:to-sky-500 transition shadow-lg hover:shadow-cyan-500/50"
                         >
                             Send Message
                         </button>
-
-                        {submitted && (
-                            <p className="text-green-400 text-center mt-4">
-                                ✅ Message sent successfully!
-                            </p>
-                        )}
                     </form>
+                    {statusMessage && (
+                        <p className="mt-4 text-center text-white font-medium">
+                            {statusMessage}
+                        </p>
+                    )}
                 </div>
             </ReavealOnScroll>
         </section>
-    )
-}
+    );
+};
