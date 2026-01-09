@@ -26,11 +26,11 @@ export const Contact = () => {
             method="POST"
             data-netlify="true"
             netlify-honeypot="bot-field"
-            action="#"
+            action="/success"
             onSubmit={() => setSubmitted(true)}
             className="space-y-6"
           >
-            {/* REQUIRED by Netlify */}
+            {/* Netlify hidden fields */}
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="bot-field" />
 
@@ -89,7 +89,7 @@ export const Contact = () => {
 
             {submitted && (
               <p className="text-green-400 text-center mt-4">
-                ✅ Message sent successfully. I’ll get back to you soon!
+                ✅ Message is being sent...
               </p>
             )}
           </form>
