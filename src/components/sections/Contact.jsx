@@ -10,10 +10,10 @@ export const Contact = () => {
         e.preventDefault();
 
         emailjs.sendForm(
-            import.meta.env.VITE_EMAILJS_SERVICE_ID,
-            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+            'service_5ijrc0t',
+            'template_8fh98ci',
             form.current,
-            import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            'QZwyXgoMnCMN2WVzs'
         ).then(
             () => {
                 setStatusMessage('✅ Your message has been sent!');
